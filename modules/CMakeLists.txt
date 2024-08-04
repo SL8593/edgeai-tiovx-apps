@@ -28,6 +28,13 @@ set(SRC_FILES
     src/tiovx_lut_module.c
     )
 
+if ("${TARGET_OS}" STREQUAL "QNX")
+    list(APPEND
+        src/openmax_wrapper/src/omax_dec.c
+        src/openmax_wrapper/src/omax_wrapper.c
+        )
+endif()
+
 if ("${TARGET_OS}" STREQUAL "LINUX")
 if ("${TARGET_CPU}" STREQUAL "A72" OR "${TARGET_CPU}" STREQUAL "A53")
     list(APPEND

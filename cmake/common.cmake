@@ -131,6 +131,7 @@ include_directories(${PROJECT_SOURCE_DIR}
                     ${PSDK_INCLUDE_PATH}/drm
                     ${EDGEAI_INCLUDE_PATH}/edgeai-tiovx-kernels
                     ${EDGEAI_INCLUDE_PATH}/edgeai-apps-utils/
+                    ${EDGEAI_INCLUDE_PATH}/
                     ${TARGET_FS}/usr/include/
                    )
 
@@ -166,6 +167,7 @@ if ("${TARGET_OS}" STREQUAL "QNX")
          ti-udmalld
          ti-pdk
          ti-sciclient
+         c++
          c++fs)
     add_definitions(
          -D_QNX_SOURCE
@@ -187,6 +189,7 @@ function(build_app app_name)
                           ${COMMON_LINK_LIBS}
                           ${TARGET_LINK_LIBS}
                           ${SYSTEM_LINK_LIBS}
+                          -Wl,--unresolved-symbols=report-all
                          )
 
     set(BIN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR})
